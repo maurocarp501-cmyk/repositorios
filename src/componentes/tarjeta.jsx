@@ -1,12 +1,19 @@
-export default function Tarjeta({documento, nombres, apellidos, alumno}) {
-
+export default function Tarjeta({documento, nombres, apellidos, alumno, año, division}) {
     return(
         <div 
-        className="Tarjeta"
-        style={{backgroundColor: alumno  ? "aquamarine" : "blueviolet"}}
+            className="Tarjeta"
+            style={{backgroundColor: alumno ? "aquamarine" : "blueviolet",
+                color: alumno ? "black" : "white"
+
+            }}
         >
+            <span
+               className="Eliminar"
+               onClick={() => alert("Eliminar")}
+            >X </span>
             <h2>{documento}</h2>
             <h3>{apellidos}, {nombres}</h3>
+            <h4>{division}, {año}</h4>
         </div>
     )
 }
