@@ -1,6 +1,6 @@
 import Tarjeta from "./Tarjeta";
 
-export default function Listado({personas}) {
+export default function Listado({personas, eliminar}) {
     return(
         <div style={{flex:3}}>
             <h1>Componente Listado</h1>
@@ -8,13 +8,14 @@ export default function Listado({personas}) {
                 {personas.map((persona, index) =>
 
                     <Tarjeta
-                        key={index}
+                        key={persona.id}
                         documento={persona.documento}
                         apellidos={persona.apellidos}
                         nombres={persona.nombres}
                         alumno={persona.alumno}
                         division={persona.division}
                         año={persona.año}
+                        eliminar= {() => eliminar(persona.id)}
                     />
                 )}
             </div>

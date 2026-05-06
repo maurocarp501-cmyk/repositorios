@@ -1,28 +1,19 @@
-import { useState } from "react";
+import usePersona from "../hooks/usePersona";
 
 export default function Formulario({guardar}){
-    const [documento, setDocumento] = useState("");
-    const [apellidos, setApellidos] = useState("");
-    const [nombres, setNombres] = useState("");
-    const [año, setAño] = useState("");
-    const [division, setDivision] = useState("");
-    const [rol, setRol] = useState("alumno");
-
+    const [persona, setDatoPersona] = usePersona();
+    
     const handlerSubmit = (e) => {
         e.preventDefault();
-        console.log({documento, apellidos, nombres, rol, año, division});
+       
 
-        const alumno= rol === "alumno";
+        const alumno= persona.rol == "alumno";
 
-        const persona = {
-            documento,
-            apellidos,
-            nombres,
-            alumno,
-            division,
-            año
-        }
-        guardar(persona);
+       const id= (new Date()).getTime();
+
+        guardar({...persona, alumno, id});
+
+        
     }
 
     return (
@@ -32,31 +23,31 @@ export default function Formulario({guardar}){
                 <input
                     type="text"
                     placeholder="Documento"
-                    onChange={(e) => setDocumento(e.target.value)}
-                    value={documento}
+                    onChange={(e) => setDatoPersona("documento",e.target.value)}
+                    value={persona.documento}
                 />
                 <input
                     type="text"
                     placeholder="Apellidos"
-                    onChange={(e) => setApellidos(e.target.value)}
-                    value={apellidos}
+                    onChange={(e) => setDatoPersona("apellidos",e.target.value)}
+                    value={persona.apellidos}
                 />
                 <input
                     type="text"
                     placeholder="Nombres"
-                    onChange={(e) => setNombres(e.target.value)}
-                    value={nombres}
+                    onChange={(e) => setDatoPersona("nombres",e.target.value)}
+                    value={persona.nombres}
                 />
-                <select onChange={(e) => setRol(e.target.value)} value={rol}>
+                <select onChange={(e) => setDatoPersona("rol",e.target.value)} value={persona.rol}>
                     <option value="alumno">Alumno</option>
                     <option value="docente">Docente</option>
                 </select>
-                <select onChange={(e) => setAño(e.target.value)} value={año}>
+                <select onChange={(e) => setDatoPersona("año",e.target.value)} value={persona.año}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                 </select>
-                <select onChange={(e) => setDivision(e.target.value)} value={division}>
+                <select onChange={(e) => setDatoPersona("division",e.target.value)} value={persona.division}>
                     <option value="4">4</option>
                     <option value="5">5</option>
                     <option value="6">6</option>

@@ -1,4 +1,4 @@
-export default function Tarjeta({documento, nombres, apellidos, alumno, año, division}) {
+export default function Tarjeta({documento, nombres, apellidos, alumno, año, division, eliminar}) {
     return(
         <div 
             className="Tarjeta"
@@ -9,7 +9,7 @@ export default function Tarjeta({documento, nombres, apellidos, alumno, año, di
         >
             <span
                className="Eliminar"
-               onClick={() => alert("Eliminar")}
+               onClick={() => eliminar()}
             >X </span>
             <h2>{documento}</h2>
             <h3>{apellidos}, {nombres}</h3>
