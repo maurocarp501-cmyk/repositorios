@@ -1,49 +1,73 @@
-import { useState } from "react";
+import usePersona from "../hooks/usePersona";
+import axios from 'axios'
+export default function Formulario({}) {
+    const [persona, setDatoPersona] = usePersona();
 
-export default function Formulario(){
-    const [documento, setDocumento] = useState("");
-    const [Apellidos, setApellidos] = useState("");
-    const [nombres, setNombres] = useState("");
-    const [Rol, setRol] = useState("");
 
-    const hanldersubmit = (e) => {
+    const hanlderSubmit = (e) => {
         e.preventDefault();
-        console.log({documento, Apellidos, nombres, Rol})
+
+        const url = "https://backend-septimos.ctpoba.edu.ar/api/personas"
+
+        const config = {
+            headers: { Authorization: "48191338"}
+        }
+
+        axios.post(url, persona, config)
+        .then((resp) => {
+            console.log(resp)
+            alert('Persona guardada')
+        })
+        .catch((error) => {
+            console.error(error)
+            alert('error al guardar')
+        })
     }
-
-    return (
+    
+    return(
         <div className="Formulario">
-            <h1>componente Formulario</h1>
-            <form onSubmit={hanldersubmit}>
+            <h1>Componente Formulario</h1>
+            <form onSubmit={hanlderSubmit}>
                 <input
-                type="text"
-                placeholder="Documento"
-                onChange={(e) => setDocumento(e.target.value)}
-                value={documento}
+                    type="text"
+                    placeholder="Documento"
+                    onChange={(e) => setDatoPersona("documento", e.target.value)}
+                    value={persona.documento}
                 />
 
                 <input
-                type="text"
-                placeholder="Apellidos"
-                  onChange={(e) => setApellidos(e.target.value)}
-                value={Apellidos}
+                    type="text"
+                    placeholder="Apellido"
+                    onChange={(e) => setDatoPersona("apellidos", e.target.value)}
+                    value={persona.apellidos}
+                />
+                <input
+                    type="text"
+                    placeholder="Nombre"
+                    onChange={(e) => setDatoPersona("nombres", e.target.value)}
+                    value={persona.nombres}
+                />
+                <input
+                    type="text"
+                    placeholder="Año"
+                    onChange={(e) => setDatoPersona("anio", e.target.value)}
+                    value={persona.anio}
+                />
+                <input
+                    type="text"
+                    placeholder="Division"
+                    onChange={(e) => setDatoPersona("division", e.target.value)}
+                    value={persona.division}
                 />
 
-                <input
-                type="text"
-                placeholder="Nombres"
-                  onChange={(e) => setNombres(e.target.value)}
-                value={nombres}
-                />
                 <select
-                     onChange={(e) => setRol(e.target.value)}
-                value={Rol}
->
-                    <option value="alumno">alumno</option>
-                    <option value="Documento">Documento</option>
+                    onChange={(e) => setRol("Rol",e.target.value)}
+                    value={persona.rol}
+                >
+                    <option value="alumno">Alumno</option>
+                    <option value="docente">Docente</option>
                 </select>
-                <button type="submit">guardar</button>
-                
+                <button type="submit">Guardar</button>
             </form>
         </div>
     )
