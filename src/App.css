@@ -3,30 +3,49 @@
     flex: 1;
     flex-direction: column;
 }
-.Contenedor{
+.Header {
+    display: flex;
+    flex-direction: row;
+    height: 80px;
+    width: 100px;
+    align-items: center;
+    background-color: grey;
+}
+
+.Header .Opcion{
+    padding: 5px 10px;
+    margin: 0 20px;
+    background-color: lightgray;
+    border-radius: 15px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.Contenedor {
     display: flex;
     flex-direction: row;
     flex: 1;
 }
-.Formulario{
+
+.Formulario {
     display: flex;
     flex-direction: column;
     flex: 1;
-
 }
-.Formulario form{
+
+.Formulario form {
     margin: 15px;
     border-radius: 15px;
-    background-color: lightgray;
+    background-color: lightgrey;
     padding: 15px 20px;
-    display: flex;
+    display: flex;  
     flex-direction: column;
 }
 
-.Formulario input, select, button{
+.Formulario input, select, button {
     margin: 10px 5px;
 }
-
 
 .Listado {
     flex: 1;
@@ -43,12 +62,12 @@
     align-items: center;
     margin: 15px;
     padding: 15px 20px;
-    background-color: rgb(81, 184, 151);
+    background-color: aquamarine;
     border-radius: 15px;
     position: relative;
 }
 
-.Eliminar{
+.Eliminar {
     position: absolute;
     background-color: red;
     color: white;
